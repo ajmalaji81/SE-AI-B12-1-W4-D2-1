@@ -1,0 +1,353 @@
+{
+  "name": "MCP Server Workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "mcp-server"
+      },
+      "id": "40f03e7b-a86c-4881-ba7d-40f69309def5",
+      "name": "MCP Server Trigger",
+      "type": "@n8n/n8n-nodes-langchain.mcpTrigger",
+      "typeVersion": 1,
+      "position": [
+        448,
+        0
+      ],
+      "webhookId": "503c95da-129e-42a4-a794-9d1a7212e7f3"
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('To', ``, 'string') }}",
+        "subject": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Subject', ``, 'string') }}",
+        "message": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message', ``, 'string') }}",
+        "options": {}
+      },
+      "id": "e068ad66-99c2-4f90-acef-b539cf818f7b",
+      "name": "Gmail",
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        240
+      ],
+      "webhookId": "087a45cd-1cba-44bf-9132-cbf50646a10d",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "riKM3aLyp5eUTqVp",
+          "name": "Ajmalaji81 email"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Document', ``, 'string') }}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Sheet', ``, 'string') }}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "id": "84c6bc5a-24f7-4ea9-8415-b242125afb05",
+      "name": "Get",
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.5,
+      "position": [
+        144,
+        240
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "SdfhfuMzKsjOBx3B",
+          "name": "AI ceo"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Document', ``, 'string') }}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Sheet', ``, 'string') }}",
+          "mode": "id"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "626cd188-fa2c-49b3-b421-a1bca5499f25",
+      "name": "Append",
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.5,
+      "position": [
+        288,
+        240
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "SdfhfuMzKsjOBx3B",
+          "name": "AI ceo"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "folderId": "default",
+        "title": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Title', ``, 'string') }}"
+      },
+      "id": "0d6a2532-a98e-4687-94b7-ab4944a5ca71",
+      "name": "Create",
+      "type": "n8n-nodes-base.googleDocsTool",
+      "typeVersion": 2,
+      "position": [
+        432,
+        240
+      ],
+      "credentials": {
+        "googleDocsOAuth2Api": {
+          "id": "Gh8GsA3fvPtXjmEz",
+          "name": "Google Docs account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentURL": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Doc_ID_or_URL', ``, 'string') }}",
+        "actionsUi": {
+          "actionFields": [
+            {
+              "action": "insert",
+              "text": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('actionFields0_Old_Text', ``, 'string') }}"
+            }
+          ]
+        }
+      },
+      "id": "affb09bb-e28d-4207-b228-54d0ed81cf44",
+      "name": "Update",
+      "type": "n8n-nodes-base.googleDocsTool",
+      "typeVersion": 2,
+      "position": [
+        560,
+        240
+      ],
+      "credentials": {
+        "googleDocsOAuth2Api": {
+          "id": "Gh8GsA3fvPtXjmEz",
+          "name": "Google Docs account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "calendar": {
+          "__rl": true,
+          "value": "ajmalaji81@gmail.com",
+          "mode": "list",
+          "cachedResultName": "ajmalaji81@gmail.com"
+        },
+        "additionalFields": {}
+      },
+      "id": "e2719509-b04e-487d-a881-37429f378874",
+      "name": "Create1",
+      "type": "n8n-nodes-base.googleCalendarTool",
+      "typeVersion": 1.3,
+      "position": [
+        992,
+        240
+      ],
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "Jqllw97vGN2qTE95",
+          "name": "Google Calendar account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "id": "2af688e5-9936-4690-84de-a5b55ee5a8c9",
+      "name": "Calculator",
+      "type": "@n8n/n8n-nodes-langchain.toolCalculator",
+      "typeVersion": 1,
+      "position": [
+        1120,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "q": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Search_Query__q_', ``, 'string') }}",
+        "location": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Location__location_', ``, 'string') }}",
+        "additionalFields": {},
+        "requestOptions": {}
+      },
+      "type": "n8n-nodes-serpapi.serpApiTool",
+      "typeVersion": 1,
+      "position": [
+        704,
+        240
+      ],
+      "id": "6295e4e2-ed5d-48fd-860d-70b7c3250257",
+      "name": "Google search in SerpApi",
+      "credentials": {
+        "serpApi": {
+          "id": "RAWhd8jbdKU0BSZA",
+          "name": "SerpApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "amazon",
+        "k": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Search_Query__k_', ``, 'string') }}",
+        "amazon_domain": "amazon.in",
+        "additionalFields": {},
+        "requestOptions": {}
+      },
+      "type": "n8n-nodes-serpapi.serpApiTool",
+      "typeVersion": 1,
+      "position": [
+        848,
+        240
+      ],
+      "id": "d6575a37-6895-4cf0-944e-ae9142910447",
+      "name": "Amazon search in SerpApi",
+      "credentials": {
+        "serpApi": {
+          "id": "RAWhd8jbdKU0BSZA",
+          "name": "SerpApi account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Gmail": {
+      "ai_tool": [
+        [
+          {
+            "node": "MCP Server Trigger",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get": {
+      "ai_tool": [
+        [
+          {
+            "node": "MCP Server Trigger",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append": {
+      "ai_tool": [
+        [
+          {
+            "node": "MCP Server Trigger",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create": {
+      "ai_tool": [
+        [
+          {
+            "node": "MCP Server Trigger",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update": {
+      "ai_tool": [
+        [
+          {
+            "node": "MCP Server Trigger",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create1": {
+      "ai_tool": [
+        [
+          {
+            "node": "MCP Server Trigger",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Calculator": {
+      "ai_tool": [
+        [
+          {
+            "node": "MCP Server Trigger",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google search in SerpApi": {
+      "ai_tool": [
+        [
+          {
+            "node": "MCP Server Trigger",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Amazon search in SerpApi": {
+      "ai_tool": [
+        [
+          {
+            "node": "MCP Server Trigger",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "6844531c-6dba-453f-93bb-b33227dbf667",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "d2db3f6fcc3b0227e453d88db7b1553a645df4a3771c5292607eeea917279274"
+  },
+  "nodeGroups": [],
+  "id": "zapzoqxNhP9YDsG8",
+  "tags": []
+}
